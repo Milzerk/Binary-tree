@@ -21,9 +21,28 @@
                 echo "Foi inserido um novo valor na árvore.. valor: ".$in_value." <br><br>";
             }
         }
+
+        public function search($ou_value) {
+            if(isset($this->value)) {
+                if($ou_value < $this->value) {
+                    echo "<hr> esquerda. <br>";
+                    $this->left->search($ou_value);
+                } else if($ou_value > $this->value){
+                    echo "<hr> direita. <br>";
+                    $this->right->search($ou_value);
+                } else {
+                    echo "<hr> o valor ".$ou_value." foi encontrado<hr>";
+                }
+            } else {
+                echo "<hr>Valor ".$ou_value." é inexistente!<hr>";
+            }
+        }
     }
     
 $tree = new Tree;
+
+
+
 
 $tree->insert(50);
 $tree->insert(60);
@@ -33,5 +52,7 @@ $tree->insert(90);
 $tree->insert(70);
 $tree->insert(80);
 $tree->insert(30);
+
+$tree->search(55);
 
 
