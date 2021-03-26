@@ -1,60 +1,45 @@
 <?php
-    class Tree
-    {
-        private $value;
-        private $right;
-        private $left;
+require './Tree.php';
 
-        public function insert($in_value) {
-            if(isset($this->value)) {       
-                if($in_value > $this->value) {
-                    echo "R:: ";
-                    $this->right->insert($in_value);
-                } else {
-                    echo "L:: ";
-                    $this->left->insert($in_value);
-                }
-            } else {
-                $this->value = $in_value;
-                $this->right = new Tree;
-                $this->left = new Tree;
-                echo "Foi inserido um novo valor na árvore.. valor: ".$in_value." <br><br>";
-            }
-        }
-
-        public function search($ou_value) {
-            if(isset($this->value)) {
-                if($ou_value < $this->value) {
-                    echo "L:: ";
-                    $this->left->search($ou_value);
-                } else if($ou_value > $this->value){
-                    echo "R:: ";
-                    $this->right->search($ou_value);
-                } else {
-                    echo "o valor ".$ou_value." foi encontrado";
-                }
-            } else {
-                echo "Valor ".$ou_value." é inexistente!";
-            }
-        }
-    }
-    
 $tree = new Tree;
 
-$cont = 1;
+// $tree->insert(2);
+// $tree->insert(3);
+// $tree->insert(1);
 
-for($i = 10; $i < 1000; $i++) {
-    echo $cont." - ";
-$tree->insert(rand(20, 3000));
-    $cont++;
+for($i = 0; $i < 10; $i++) {
+    $tree->insert(rand(0, 20));
 }
 
-echo "<hr> ";
-$tree->search(25);
-echo "<hr> ";
-$tree->search(60);
-echo "<hr> ";
-$tree->search(3001);
-echo "<hr> ";
+
+// echo "<hr> ";
+// $tree->search(25);
+// echo "<hr> ";
+// $tree->search(60);
+// echo "<hr> ";
+// $tree->search(3001);
+// echo "<hr> ";
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BinaryTree</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+    <div class="content">    
+        <ul class="tree">
+            <?php echo $tree->ShowTree();?>
+        </ul>
+    </div>
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
 
 
