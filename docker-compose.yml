@@ -1,0 +1,54 @@
+version: "3.7"
+services:
+
+  ## PHP-FPM Container ############
+  php-fpm:
+    build:
+      context: ./docker/php-fpm
+      dockerfile: Dockerfile
+    image: php-fpm
+    container_name: BiTree-php-fpm
+    restart: unless-stopped
+    working_dir: /var/www/html/public
+    volumes:
+      - ./:/var/www/html
+    networks:
+      - BiTree-network
+
+  ## NGINX Container #############
+  nginx:
+    image: nginx:1.19-alpine
+    container_name: BiTree-nginx
+    restart: unless-stopped
+    ports:
+      - 8080:80
+    volumes:
+      - ./:/var/www/html
+      - ./docker/nginx:/etc/nginx/conf.d
+    networks:
+      - BiTree-network
+
+  # MySQL Container
+  mysql:
+    image: mysql:8.0
+    container_name: BiTree-mysql
+    volumes:
+      - BiTree-db:/var/lib/mysqldb
+    ports:
+      - "3308:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=BiTree
+      - MYSQL_DATABASE=BiTree
+      - MYSQL_USER=BiTree
+      - MYSQL_PASSWORD=BiTree
+      - MYSQL_DAYA=/var/lib/mysqldb
+    networks:
+      - BiTree-network
+
+networks:
+  BiTree-network:
+    driver: bridge
+
+volumes:
+  BiTree-db:
+    driver: local
