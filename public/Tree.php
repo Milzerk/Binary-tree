@@ -3,8 +3,8 @@
     class Tree
     {
         private $value;
-        private $right;
-        private $left;
+        public $right;
+        public $left;
         private $hasTree = false;
         private $parent;
         public $balanceLeft;
@@ -16,11 +16,11 @@
                 if ($in_value == $this->value){
                     return null;
                 } else if($in_value > $this->value) {
-                    $balance = $this->right->insert($in_value, $this);
+                    $this->right->insert($in_value, $this);
                     $this->balanceRight = $this->right->maxBalance() + 1;
                     $this->balance();
                 } else {
-                    $balance = $this->left->insert($in_value, $this);
+                    $this->left->insert($in_value, $this);
                     $this->balanceLeft = $this->left->maxBalance() + 1;
                     $this->balance();
                 }
@@ -70,17 +70,19 @@
         public function balance()
         {
             $balance = abs($this->balanceRight - $this->balanceLeft);
-            if($balance > 1) {
-                if($this->balanceRight > $this->balanceLeft) {
-                    $this->balanceRight = $this->right->balanceLeft;
+            if($balance > 1) { //1-3
+                if($this->balanceRight > $this->balanceLeft) { // yes 3 > 1
+                    $this->balanceRight = $this->right->balanceLeft; // nó 2 = 1-1
+                    $sonLeftOfRight = clone $this->right->left;
                     $this->right->spin($this->parent, $this, null);
                     $this->parent = $this->right;
-                    $this->right = new Tree();
+                    $this->right = $sonLeftOfRight;
                 } else {
                     $this->balanceLeft = $this->left->balanceRight;
+                    $sonRightOfLeft = clone $this->left->right;
                     $this->left->spin($this->parent, null, $this);
                     $this->parent = $this->left;
-                    $this->left = new Tree();
+                    $this->left = $sonRightOfLeft;
                 }
             }
         }

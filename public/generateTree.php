@@ -19,7 +19,12 @@ $tree = new Tree;
 //     $tree = $tree->getRoot();
 
 
-for($i = 1; $i <= 5; $i++) {
+// for($i = 1; $i <= 6; $i++) {
+//     $tree->insert($i);
+//     $tree = $tree->getRoot();
+// }
+
+for($i = 15; $i >= 1; $i--) {
     $tree->insert($i);
     $tree = $tree->getRoot();
 }
