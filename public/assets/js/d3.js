@@ -9,6 +9,7 @@ var svg;
 var  diagonal;
 
 $('#buttonTeste').click(function () {
+    $("#main-svg").remove();
     $.ajax({
         type: 'POST',
         url: "generateTree.php",
@@ -38,6 +39,7 @@ function createTree(data) {
       .projection(function(d) { return [d.y, d.x]; });
   
   svg = d3.select("body").append("svg")
+      .attr("id", "main-svg")  
       .attr("width", width + margin.right + margin.left)
       .attr("height", height + margin.top + margin.bottom)
     .append("g")

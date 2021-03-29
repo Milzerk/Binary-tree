@@ -17,3 +17,13 @@
     stroke: #ccc;
     stroke-width: 2px;
 }
+
+svg {
+    padding-top: 300px;
+    transform: rotate(90deg);
+}
+
+text {
+    transform: rotate(-90deg);
+}
+

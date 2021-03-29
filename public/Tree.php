@@ -44,6 +44,7 @@
 
             return $objTree;
         }
+        
         public function search($ou_value) {
             if(isset($this->value)) {
                 if($ou_value < $this->value) {
