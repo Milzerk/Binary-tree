@@ -8,20 +8,51 @@ var i = 0,
 var svg;
 var  diagonal;
 
-$('#buttonTeste').click(function () {
+$('#buttonAdd').click(function() {
+    var number = $("#newNumber").val();
+    if(number == "") {
+        return;
+    }
+    var arrNumber = $("#arrNumbers").val();
+    if(arrNumber == "") {
+        numbers = [parseInt(number)]
+    } else {
+        numbers = JSON.parse(arrNumber);
+        numbers.push(parseInt(number));
+    }
+    $("#arrNumbers").val(JSON.stringify(numbers));
+
+    submitTree(numbers);
+});
+
+$('#buttonNew').click(function () {
+    var arrNumber = $("#arrNumbers").val();
+    if(arrNumber == "") {
+        return;
+    } else {
+        numbers = JSON.parse(arrNumber);
+    }
+
+    submitTree(numbers);
+});
+
+function submitTree(dados) {
+
     $("#main-svg").remove();
     $.ajax({
         type: 'POST',
         url: "generateTree.php",
+        data: { newNumber: dados},
         success: function (data) {
             var obj = JSON.parse(data);
-            createTree(obj);
+            createTree(obj.tree);
+            console.log(data);
         },
         error: function (){
             console.log('error');
         }
     });
-});
+}
 
 function createTree(data) {
     var treeData = data;
@@ -37,10 +68,10 @@ function createTree(data) {
   diagonal = d3.svg.diagonal()
       .projection(function(d) { return [d.y, d.x]; });
   
-  svg = d3.select("body").append("svg")
+  svg = d3.select(".container").append("svg")
       .attr("id", "main-svg")  
       .attr("width", width + margin.right + margin.left)
-      .attr("height", height + margin.top + margin.bottom)
+      .attr("height", 1000)
     .append("g")
       .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
   

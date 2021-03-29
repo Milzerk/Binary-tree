@@ -7,8 +7,13 @@
   </head>
   <body>
 
-    <button id="buttonTeste">Teste</button>
+    <button id="buttonAdd">Adicionar</button>
+    <input type="number" id="newNumber">
+    <button id="buttonNew">Novo</button>
+    <input type="text" name="arr" id="arrNumbers">
+    <div class="container">
 
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- load the d3.js library -->	

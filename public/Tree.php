@@ -40,7 +40,7 @@
                 return null;
             }
             $objTree = new stdClass();
-            $objTree->name = $this->value;
+            $objTree->name = $this->value.' L:'.$this->balanceLeft.' R:'. $this->balanceRight;
             if($this->right->ShowTree() != null) {
                 $objTree->children[] = $this->right->ShowTree();
             }
