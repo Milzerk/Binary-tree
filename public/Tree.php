@@ -70,9 +70,9 @@
         public function balance()
         {
             $balance = abs($this->balanceRight - $this->balanceLeft);
-            if($balance > 1) { //1-3
-                if($this->balanceRight > $this->balanceLeft) { // yes 3 > 1
-                    $this->balanceRight = $this->right->balanceLeft; // nó 2 = 1-1
+            if($balance > 1) {
+                if($this->balanceRight > $this->balanceLeft) {
+                    $this->balanceRight = $this->right->balanceLeft;
                     $sonLeftOfRight = clone $this->right->left;
                     $this->right->spin($this->parent, $this, null);
                     $this->parent = $this->right;

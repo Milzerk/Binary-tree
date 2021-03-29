@@ -14,7 +14,6 @@ $('#buttonTeste').click(function () {
         type: 'POST',
         url: "generateTree.php",
         success: function (data) {
-            console.log(data);
             var obj = JSON.parse(data);
             createTree(obj);
         },
