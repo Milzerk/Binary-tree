@@ -7,7 +7,7 @@ ul.tree li {
     /* position: relative; */
     align-items: center;
     display: flex;
-    padding: 15px 0px;
+    padding: 0px 0px;
 }
 /* 
 ul.tree li::before {

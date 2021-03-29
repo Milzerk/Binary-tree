@@ -6,15 +6,17 @@
         private $right;
         private $left;
         private $hasTree = false;
+        private $parent;
 
-        public function insert($in_value) {
+        public function insert($in_value, $parent = 'null') {
+            $this->parent = $parent; 
             if(isset($this->value)) {
                 if ($in_value == $this->value){
                     return null;
                 } else if($in_value > $this->value) {
-                    $this->right->insert($in_value);
+                    $this->right->insert($in_value, $this->value);
                 } else {
-                    $this->left->insert($in_value);
+                    $this->left->insert($in_value, $this->value);
                 }
             } else {
                 $this->value = $in_value;
@@ -27,18 +29,20 @@
 
         public function ShowTree()
         {
-            if($this->hasTree) {
-                $htmlTree =
-                "<li><a href='#'>$this->value</a>
-                    <ul>
-                            ".$this->left->ShowTree()."
-                            ".$this->right->ShowTree()."
-                    </ul>
-                </li>";
-                return $htmlTree;
-            } else {
-                return "<li><a href='#'>Nó</a></li>";
+            if(!$this->hasTree){
+                return null;
             }
+            $objTree = new stdClass();
+            $objTree->name = $this->value;
+            $objTree->parent = $this->parent;
+            if($this->right->ShowTree() != null) {
+                $objTree->children[] = $this->right->ShowTree();
+            }
+            if($this->left->ShowTree() != null) {
+                $objTree->children[] = $this->left->ShowTree();
+            }
+
+            return $objTree;
         }
         public function search($ou_value) {
             if(isset($this->value)) {
