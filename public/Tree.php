@@ -67,17 +67,23 @@
             }
         }
 
-        public function balance()
+        public function balance($force = false)
         {
             $balance = abs($this->balanceRight - $this->balanceLeft);
-            if($balance > 1) {
+            if($balance > 1 || $force) {
                 if($this->balanceRight > $this->balanceLeft) {
+                    if($this->right->balanceRight == 0 && !$force) {
+                        $this->right->balance(true);
+                    }
                     $this->balanceRight = $this->right->balanceLeft;
                     $sonLeftOfRight = clone $this->right->left;
                     $this->right->spin($this->parent, $this, null);
                     $this->parent = $this->right;
                     $this->right = $sonLeftOfRight;
                 } else {
+                    if($this->left->balanceLeft == 0 && !$force) {
+                        $this->left->balance(true);
+                    }
                     $this->balanceLeft = $this->left->balanceRight;
                     $sonRightOfLeft = clone $this->left->right;
                     $this->left->spin($this->parent, null, $this);
