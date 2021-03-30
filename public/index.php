@@ -1,45 +1,25 @@
-<?php
-require './Tree.php';
-
-$tree = new Tree;
-
-// $tree->insert(2);
-// $tree->insert(3);
-// $tree->insert(1);
-
-for($i = 0; $i < 10; $i++) {
-    $tree->insert(rand(0, 20));
-}
-
-
-// echo "<hr> ";
-// $tree->search(25);
-// echo "<hr> ";
-// $tree->search(60);
-// echo "<hr> ";
-// $tree->search(3001);
-// echo "<hr> ";
-
-
-?>
-
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BinaryTree</title>
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body>
-    <div class="content">    
-        <ul class="tree">
-            <?php echo $tree->ShowTree();?>
-        </ul>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8">
+    <title>Tree Example</title>
+    <link rel="stylesheet" href="./assets/css/d3.css">
+  </head>
+  <body>
+
+    <button id="buttonRandom">Aleatórios</button>
+    <button id="buttonAdd">Adicionar</button>
+    <input type="number" id="newNumber">
+    <button id="buttonNew">Novo</button>
+    <input type="text" name="arr" id="arrNumbers">
+    <div class="container">
+
     </div>
-    <script src="./assets/js/script.js"></script>
-</body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- load the d3.js library -->	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+        
+    <script src="./assets/js/d3.js"></script>
+  </body>
 </html>
-
-
