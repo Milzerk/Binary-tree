@@ -7,6 +7,24 @@ var i = 0,
     duration = 750;
 var svg;
 var  diagonal;
+$('#buttonRandom').click(function() {
+    var number = $("#newNumber").val();
+
+    if(number == "") {
+        return;
+    }
+    var cont = 0;
+    var numbers = new Array();
+    while(cont < parseInt(number)) {
+        var random = Math.floor(Math.random() * parseInt(number))
+        numbers.push(random);
+        cont++;
+    }
+
+    $("#arrNumbers").val(JSON.stringify(numbers));
+
+    submitTree(numbers);
+});
 
 $('#buttonAdd').click(function() {
     var number = $("#newNumber").val();

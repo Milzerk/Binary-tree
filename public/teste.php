@@ -7,6 +7,7 @@
   </head>
   <body>
 
+    <button id="buttonRandom">Aleatórios</button>
     <button id="buttonAdd">Adicionar</button>
     <input type="number" id="newNumber">
     <button id="buttonNew">Novo</button>

@@ -72,7 +72,7 @@
             $balance = abs($this->balanceRight - $this->balanceLeft);
             if($balance > 1 || $force) {
                 if($this->balanceRight > $this->balanceLeft) {
-                    if($this->right->balanceRight == 0 && !$force) {
+                    if($this->right->balanceLeft > $this->right->balanceRight && !$force) {
                         $this->right->balance(true);
                     }
                     $this->balanceRight = $this->right->balanceLeft;
@@ -81,7 +81,7 @@
                     $this->parent = $this->right;
                     $this->right = $sonLeftOfRight;
                 } else {
-                    if($this->left->balanceLeft == 0 && !$force) {
+                    if($this->left->balanceLeft < $this->left->balanceRight && !$force) {
                         $this->left->balance(true);
                     }
                     $this->balanceLeft = $this->left->balanceRight;
